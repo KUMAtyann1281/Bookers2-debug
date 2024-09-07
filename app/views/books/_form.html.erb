@@ -1,13 +1,17 @@
-<%= form_with model: book, method: :post do |f| %>
+<%= form_with model: book do |f| %>
   <div class="form-group">
-    <%= f.label :title %>
+    <%= f.label :title %><br/>
     <%= f.text_field :title, class: 'form-control book_title' %>
   </div>
   <div class="form-group">
-    <%= f.label :opinion %>
+    <%= f.label :opinion %><br/>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <div class="form-group">
-    <%= f.submit 'Create Book', class: 'btn btn-success' %>
+    <% if request.fullpath.include?("edit") %>
+      <%= f.submit 'Update Book', class: 'btn btn-success' %>
+    <% else %>
+      <%= f.submit 'Create Book', class: 'btn btn-success' %>
+    <% end %>
   </div>
 <% end %>

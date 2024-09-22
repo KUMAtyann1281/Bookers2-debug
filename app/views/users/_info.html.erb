@@ -19,13 +19,31 @@
 </table>
 
 <div class='row'>
-  <div class="col-md-12">
-    <% if current_user == user %>
+  <% if current_user == user %>
+    <div class="col-md-12">
       <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
-    <% else %>
+    </div>
+  <% else %>
+    <div class="col-md-6">
       <td><%= render "relationships/button", user: user %></td>
+    </div>
+  <% end %>
+  <div class="col-md-6">
+    <% unless user.id == current_user.id %>
+      <% if (current_user.following? user) && (user.following? current_user)  %>
+        <% if @isRoom == true %>
+          <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary user-show-chat">チャットへ</a>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める", class:"btn btn-primary user-show-chat" %>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>

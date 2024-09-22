@@ -1,1 +1,13 @@
 $('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/favorite", book: @book) %>");
+$.ajax({
+  type: "GET",
+  url: "<%= books_path %>", // Book一覧を取得するエンドポイントに変更
+  success: function(data) {
+    var $data = $(data);
+    var $bookList = $data.find('#book_list'); // 受け取ったデータから本来再描画する対象の部分を取得
+    $('#book_list').html($bookList.html()); // Book一覧部分のみを再描画
+  },
+  error: function(xhr, status, error) {
+    console.log(error);
+  }
+});

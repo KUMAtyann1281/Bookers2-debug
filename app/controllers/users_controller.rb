@@ -25,7 +25,8 @@ class UsersController < ApplicationController
     @books = @user.books
     @today_book = @books.created_today
     @yesterday_book = @books.created_yesterday
-
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
     @book = Book.new
   end
 
@@ -44,6 +45,12 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def posts_on_date
+    @user = User.find(params[:user_id])# リクエストの中からユーザーIDを取得し、データベースからユーザー情報を取得
+    @books = @user.books.where(created_at: params[:created_at].to_date.all_day) # ユーザーが指定した日に投稿した本（books）をデータベースから検索
+    render :posts_on_date_form# 検索結果を表示するためのビュー（posts_on_date_form）にデータを送る
   end
 
   private

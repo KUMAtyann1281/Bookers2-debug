@@ -25,7 +25,7 @@
             <% end %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', user_path(user.id) %></td>
+        <td><%= link_to 'Show', user_path(user.id), data: {"turbolinks" => false} %></td>
       </tr>
     <% end %>
   </tbody>

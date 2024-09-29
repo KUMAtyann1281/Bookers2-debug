@@ -12,7 +12,7 @@
         <tbody>
           <tr>
             <td>
-              <%= link_to user_path(@user.id) do %>
+              <%= link_to user_path(@user.id),data: {"turbolinks" => false} do %>
                 <%= image_tag @user.get_profile_image, size:'50x50' %><br/>
                 <%= @user.name %>
               <% end %>

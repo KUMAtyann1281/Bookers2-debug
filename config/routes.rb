@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get "following" => "relationships#following", as: "following"
     get "posts_on_date" => "users#posts_on_date"
   end
+  
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update]
 
   resources :rooms, only: [:create,:show]
   resources :messages, only: [:create]

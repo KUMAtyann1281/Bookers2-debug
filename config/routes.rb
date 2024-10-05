@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     get "following" => "relationships#following", as: "following"
     get "posts_on_date" => "users#posts_on_date"
   end
-  
+
   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
     resource :group_users, only: [:create, :destroy]
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
   end
 
   resources :rooms, only: [:create,:show]

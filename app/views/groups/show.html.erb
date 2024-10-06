@@ -37,7 +37,7 @@
             </td>
             <% if @group.is_owned_by?(current_user) %>
               <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %></td>
-              <td><%= link_to 'Notice an Event',group_new_mail_path(@group), class: "btn btn-sm btn-info" %></td>
+              <td><%= link_to 'Notice an Event',new_group_event_notice_path(@group), class: "btn btn-sm btn-info" %></td>
             <% elsif @group.includesUser?(current_user)%>
               <td>
                 <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>

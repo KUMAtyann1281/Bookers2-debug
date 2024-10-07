@@ -19,6 +19,7 @@
             </td>
             <td><%= link_to @book.title, @book, class: "book_#{@book.id}" %></td>
             <td colspan="2"><%= @book.body %></td>
+            <td><%= render "static_rate", book: @book %></td>
             <td id="favorite_buttons_<%= @book.id %>" >
               <%= render "favorites/favorite", book: @book %>
             </td>
@@ -28,7 +29,7 @@
             <td>閲覧数: <%= @book.read_counts.count %></td>
             <td class="action-links">
               <% if @user.id == current_user.id %>
-                <%= link_to "Edit", edit_book_path(@book) %>
+                <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-sm btn-success' %>
               <% end %>
             </td>
             <td class="action-links">

@@ -19,6 +19,11 @@
             </td>
             <td><%= link_to @book.title, @book, class: "book_#{@book.id}" %></td>
             <td colspan="2"><%= @book.body %></td>
+            <td>
+              <% @book_tags.each do |tag| %>
+                <%=tag.name%><%="(#{tag.books.count})" %>
+              <% end %>
+            </td>
             <td><%= render "static_rate", book: @book %></td>
             <td id="favorite_buttons_<%= @book.id %>" >
               <%= render "favorites/favorite", book: @book %>
